@@ -1,0 +1,36 @@
+package com.codegym.service.Impl;
+
+import com.codegym.entity.Video;
+import com.codegym.repository.VideoRepository;
+import com.codegym.service.VideoService;
+
+import java.util.List;
+import java.util.Optional;
+
+public class VideoServiceImpl implements VideoService {
+    private final VideoRepository videoRepository;
+
+    public VideoServiceImpl(VideoRepository videoRepository) {
+        this.videoRepository = videoRepository;
+    }
+
+    @Override
+    public List<Video> getAllVideo() {
+        return videoRepository.findAll();
+    }
+
+    @Override
+    public Optional<Video> findById(Long id) {
+        return videoRepository.findById(id);
+    }
+
+    @Override
+    public void updateVideo(Video video) {
+        videoRepository.save(video);
+    }
+
+    @Override
+    public void deleteVideo(Long id) {
+        videoRepository.deleteById(id);
+    }
+}

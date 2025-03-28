@@ -1,0 +1,9 @@
+package com.codegym.entity;
+
+import java.io.Serializable;
+
+
+public class VideoPlaylistId implements Serializable {
+    private Long videoId;
+    private Long playlistId;
+}

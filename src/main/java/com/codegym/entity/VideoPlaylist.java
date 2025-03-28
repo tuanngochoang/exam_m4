@@ -1,0 +1,40 @@
+package com.codegym.entity;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.io.Serializable;
+
+@Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Table(name = "video_playlist")
+public class VideoPlaylist implements Serializable {
+    @EmbeddedId
+    private VideoPlaylistId id;
+
+    @ManyToOne
+    @MapsId("videoId")
+    @JoinColumn(name = "video_id")
+    @JsonBackReference("video-videoplaylist")
+    private Video video;
+
+    @ManyToOne
+    @MapsId("playlistId")
+    @JoinColumn(name = "playlist_id")
+    @JsonBackReference("playlist-videoplaylist")
+    private Playlist playlist;
+}
